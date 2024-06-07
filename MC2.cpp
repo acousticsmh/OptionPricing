@@ -2,6 +2,8 @@
 #include <cmath>
 #include <string>
 #include "Random1.h"
+#include "SimpleMC.h"
+#include "PayOff1.h"
 
 using namespace std;
 
@@ -27,27 +29,6 @@ double phi(double x)
     return 0.5 * (1.0 + sign * y);
 }
 
-double monte_carlo_option_price(double S_0, double sigma, double r, double T, double K, int N)
-{
-    // default_random_engine generator;
-    // normal_distribution<double> distribution(0.0, 1.0);
-    double sum_payoffs = 0.0;
-    int i = 0;
-    double drifted_stock = S_0 * exp((r - sigma * sigma / 2) * T);
-    double std_deviation = sigma * sqrt(T);
-    while (i < N)
-    {
-        // double normal = distribution(generator);
-        double normal = GetOneGaussianByBoxMuller();
-        double stock_price = drifted_stock * exp(normal * std_deviation);
-        double payoff = max(stock_price - K, 0.0);
-        sum_payoffs += payoff;
-        i++;
-    }
-    double simulated_price = exp(-r * T) * (sum_payoffs / (1.0 * N));
-    return simulated_price;
-}
-
 double black_scholes_price(double S_0, double sigma, double r, double T, double K)
 {
     double d1 = (log(S_0 / K) + (r + sigma * sigma / 2) * T) / (sigma * sqrt(T));
@@ -63,12 +44,17 @@ int main()
     double T = 2.0;
     double r = 0.03;
     double sigma = 0.15;
-    int N = 100000000;
+    int N = 1000000;
     int i = 0;
-    double simulated_price = monte_carlo_option_price(S_0, sigma, r, T, K, N);
+
+    PayOff callPayOff(K, PayOff::call);
+    PayOff putPayOff(K, PayOff::put);
+
+    double call_price = SimpleMonteCarlo2(callPayOff, T, S_0, sigma, r, N);
+    double put_price = SimpleMonteCarlo2(putPayOff, T, S_0, sigma, r, N);
     double actual_price = black_scholes_price(S_0, sigma, r, T, K);
-    cout << "Hi There, How are you? " << endl;
-    cout << "Monte Carlo Price " << simulated_price << endl;
+    cout << "Monte Carlo Call Option Price " << call_price << endl;
+    cout << "Monte Carlo Put Option Price " << put_price << endl;
     cout << "Black Scholes Option Price " << actual_price << endl;
 
     return 0;
