@@ -1,9 +1,11 @@
 #include "PayOff1.h"
 #include <algorithm>
 PayOff::PayOff(double Strike_, OptionType TheOptionsType_)
-    : Strike(Strike_), TheOptionsType(TheOptionsType_)
 {
+    Strike = Strike_;
+    TheOptionsType = TheOptionsType_;
 }
+
 double PayOff::operator()(double spot) const
 {
     switch (TheOptionsType)
