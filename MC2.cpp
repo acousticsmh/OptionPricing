@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include "Random1.h"
-#include "SimpleMC.h"
-#include "PayOff1.h"
+#include "Random/Random1.h"
+#include "MC/SimpleMC.h"
+#include "PayOff/PayOff1.h"
 
 using namespace std;
 
@@ -44,7 +44,7 @@ int main()
     double T = 2.0;
     double r = 0.03;
     double sigma = 0.15;
-    int N = 1000000;
+    int N = 10000000;
     int i = 0;
 
     PayOff callPayOff(K, PayOff::call);
