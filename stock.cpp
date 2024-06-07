@@ -7,7 +7,8 @@ using namespace std;
 
 double phi(double x)
 {
-    // constants
+    // Function to find CDF of x in Standard Normal Distribution
+    // Check Details Here : https://stackoverflow.com/questions/2328258/cumulative-normal-distribution-function-in-c-c
     double a1 = 0.254829592;
     double a2 = -0.284496736;
     double a3 = 1.421413741;
