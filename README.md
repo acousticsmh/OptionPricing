@@ -12,7 +12,7 @@ In this project, I try to implement an object oriented approach to Options Prici
 - As it stands, adding any new payoff methods (exotic options, digital option etc.) would require a change in the files Payoff1.h and Payoff1.cpp (adding more enums). But that would mean every other file that imports it must be recompiled. This can cause issues when either dealing with external software (say, the MC part has been imported from somewhere else, and cannot be recompiled), or it can be time consuming.
 - We need a way to modify (add) behaviors to the payoff class, without changing the Payoff1.h file, and also not forcing dependant file recompilation.
 
-## Adding Inheritance to PayOff Class and Future Challenges
+## Adding Inheritance to PayOff Class
 
 Now, in this version, I added extensibility to the PayOff class, so that we can address the two challenges
   - All Payoff classes are inherited from the base, which is not a usable class (because of a pure Virtual Function)
