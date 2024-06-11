@@ -2,8 +2,8 @@
 #include <cmath>
 #include <string>
 #include "Random/Random1.h"
-#include "MC/SimpleMC.h"
-#include "PayOff/PayOff1.h"
+#include "MC/SimpleMC2.h"
+#include "PayOff/PayOff2.h"
 
 using namespace std;
 
@@ -40,22 +40,48 @@ double black_scholes_price(double S_0, double sigma, double r, double T, double 
 
 int main()
 {
-    double S_0 = 100;
-    double K = 110;
-    double T = 2.0;
-    double r = 0.03;
-    double sigma = 0.15;
-    int N = 10000000;
+    double S_0;
+    double K;
+    double T;
+    double r;
+    double sigma;
+    int N;
+    int optionType;
 
-    PayOff callPayOff(K, PayOff::call);
-    PayOff putPayOff(K, PayOff::put);
+    PayOff *thisPayOff;
 
-    double call_price = SimpleMonteCarlo2(callPayOff, T, S_0, sigma, r, N);
-    double put_price = SimpleMonteCarlo2(putPayOff, T, S_0, sigma, r, N);
+    cout << "\nEnter expiry\n";
+    cin >> T;
+
+    cout << "\n Enter Current Stock Price\n";
+    cin >> S_0;
+
+    cout << "\n Enter Strike Price\n";
+    cin >> K;
+
+    cout << "\n Enter Risk Free Interest Rate\n";
+    cin >> r;
+
+    cout << "\n Enter Volatility\n";
+    cin >> sigma;
+
+    cout << "\n Enter Number of Simulated Paths\n";
+    cin >> N;
+
+    cout << "\n Enter 0 for Call Option, else Put Option\n";
+    cin >> optionType;
+
+    if (optionType == 0)
+        thisPayOff = new PayOffCall(K);
+    else
+        thisPayOff = new PayOffPut(K);
+
+    double option_price = SimpleMonteCarlo2(*thisPayOff, T, S_0, sigma, r, N);
     double actual_price = black_scholes_price(S_0, sigma, r, T, K);
-    cout << "Monte Carlo Call Option Price " << call_price << endl;
-    cout << "Monte Carlo Put Option Price " << put_price << endl;
+    cout << "Monte Carlo Option Price " << option_price << endl;
     cout << "Black Scholes Call Option Price " << actual_price << endl;
+
+    delete thisPayOff;
 
     return 0;
 }
