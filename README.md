@@ -14,10 +14,10 @@ In this project, I try to implement an object oriented approach to Options Prici
 
 ## Adding Inheritance to PayOff Class and Future Challenges
 
-- Now, in this version, I added extensibility to the PayOff class, so that we can address the two challenges
-  -- All Payoff classes are inherited from the base, which is not a usable class (because of a pure Virtual Function)
-  -- Additional PayOffs can be added without changing the base class, and the recompilation is no longer as expensive.
-  -- All payoffs can have their own parameters, and one payoff can be as complex as possible (a mix of several options, maybe) without modifying all other payoff classes.
+Now, in this version, I added extensibility to the PayOff class, so that we can address the two challenges
+  - All Payoff classes are inherited from the base, which is not a usable class (because of a pure Virtual Function)
+  - Additional PayOffs can be added without changing the base class, and the recompilation is no longer as expensive.
+  - All payoffs can have their own parameters, and one payoff can be as complex as possible (a mix of several options, maybe) without modifying all other payoff classes.
 
 
 There are still some challenges.
