@@ -4,6 +4,7 @@
 #include "Random/Random1.h"
 #include "MC/SimpleMC2.h"
 #include "PayOff/PayOff2.h"
+#include "PayOff/PayOff3.h"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ double black_scholes_price(double S_0, double sigma, double r, double T, double 
 int main()
 {
     double S_0;
-    double K;
+    double K = 110;
     double T;
     double r;
     double sigma;
@@ -56,9 +57,6 @@ int main()
     cout << "\n Enter Current Stock Price\n";
     cin >> S_0;
 
-    cout << "\n Enter Strike Price\n";
-    cin >> K;
-
     cout << "\n Enter Risk Free Interest Rate\n";
     cin >> r;
 
@@ -68,13 +66,30 @@ int main()
     cout << "\n Enter Number of Simulated Paths\n";
     cin >> N;
 
-    cout << "\n Enter 0 for Call Option, else Put Option\n";
+    cout << "\n Enter 0 for Call Option, 1 for Put Option, 2 for Digital Call and 3 for Double Digital Call\n";
     cin >> optionType;
+
+    if (optionType != 3)
+    {
+        cout << "\n Enter Strike Price\n";
+        cin >> K;
+    }
 
     if (optionType == 0)
         thisPayOff = new PayOffCall(K);
-    else
+    else if (optionType == 1)
         thisPayOff = new PayOffPut(K);
+    else if (optionType == 2)
+        thisPayOff = new PayOffDigital(K);
+    else
+    {
+        double lowerStrike_, upperStrike_;
+        cout << "\n Enter Lower Strike\n";
+        cin >> lowerStrike_;
+        cout << "\n Enter Upper Strike\n";
+        cin >> upperStrike_;
+        thisPayOff = new PayOffDoubleDigital(lowerStrike_, upperStrike_);
+    }
 
     double option_price = SimpleMonteCarlo2(*thisPayOff, T, S_0, sigma, r, N);
     double actual_price = black_scholes_price(S_0, sigma, r, T, K);
