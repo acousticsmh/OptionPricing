@@ -1,3 +1,5 @@
+#ifndef PAYOFF3_H
+#define PAYOFF3_H
 #include "PayOff2.h"
 
 class PayOffDigital : public PayOff
@@ -22,3 +24,5 @@ private:
     double lowerStrike;
     double upperStrike;
 };
+
+#endif

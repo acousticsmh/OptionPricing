@@ -3,7 +3,6 @@
 #include <string>
 #include "Random/Random1.h"
 #include "MC/SimpleMC2.h"
-#include "PayOff/PayOff2.h"
 #include "PayOff/PayOff3.h"
 
 using namespace std;

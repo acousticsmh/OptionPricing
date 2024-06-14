@@ -1,3 +1,3 @@
-DEPS= SimpleMC3Main.cpp  PayOff/PayOff2.cpp PayOff/PayOff3.cpp MC/SimpleMC2.cpp  Random/Random1.cpp
+DEPS= VanillaMC.cpp PayOff/PayOff4.cpp Option/Vanilla.cpp MC/SimpleMC3.cpp  Random/Random1.cpp utils/utils.cpp
 stock: $(DEPS)
-	g++ -o option $(DEPS)
+	g++ -o optionprice $(DEPS)
