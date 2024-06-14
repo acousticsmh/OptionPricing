@@ -18,7 +18,7 @@ int main()
     int N;
     int optionType;
 
-    PayOff *thisPayOff;
+    PayOff *thePayOff;
 
     cout << "\nEnter expiry\n";
     cin >> T;
@@ -42,11 +42,11 @@ int main()
     cin >> K;
 
     if (optionType == 0)
-        thisPayOff = new PayOffCall(K);
+        thePayOff = new PayOffCall(K);
     else
-        thisPayOff = new PayOffPut(K);
+        thePayOff = new PayOffPut(K);
 
-    VanillaOption theOption(*thisPayOff, T);
+    VanillaOption theOption(*thePayOff, T);
 
     double option_price = SimpleMonteCarlo3(theOption, S_0, sigma, r, N);
     double call_price = black_scholes_price(S_0, sigma, r, T, K);
@@ -54,8 +54,6 @@ int main()
     cout << "Monte Carlo Option Price " << option_price << endl;
     cout << "Black Scholes Call Option Price " << call_price << endl;
     cout << "Black Scholes Put Option Price " << put_price << endl;
-
-    delete thisPayOff;
 
     return 0;
 }

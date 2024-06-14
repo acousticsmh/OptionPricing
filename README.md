@@ -26,3 +26,16 @@ There are still some challenges.
 
 - For every payoff, there is an interface (a new Class for each payoff type). Can this be made easier? I specify an option type, that instantiates some class according to the name of the option, and the interface doesn't need to add logic for which payoff to initialize?
 - What about the variation in the number of params for each payoff? Can something handle a varying list of params for each payoff type?
+
+
+## Adding Option Class and Virtual Constructor for PayOff Attribute
+
+- Now, I start to develop the object equivalence to the Option. It contains two attributes: the payOff and the expiry.
+- The PayOff needs to be "Cloned" so that there are no issues with object change after assigning/ object deletion on scope change.
+- Instead of the PayOff class, the Monte Carlo Simulation is not exposed to any payoff, and directly gets the Future Value from the option.
+
+
+## Put Option Price from Call Option
+
+- I used a neat tool from Arbitrage theory to get the put option price from the Spot and the call option price.
+- Basically, you can replicate the portfolio of buying a call and selling a put, with the portfolio of a stock buy and a borrow from the bond market. Equating the prices, gives the price of the Put option.
