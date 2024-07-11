@@ -1,6 +1,6 @@
 #ifndef PAYOFFBRIDGE_H
 #define PAYOFFBRIDGE_H
-#include <PayOff4.h>
+#include "PayOff4.h"
 class PayOffBridge
 {
 public:

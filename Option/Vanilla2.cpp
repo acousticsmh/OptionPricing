@@ -1,4 +1,4 @@
-#include <Vanilla2.h>
+#include "Vanilla2.h"
 VanillaOption::VanillaOption(const PayOffBridge &
                                  ThePayOff_,
                              double Expiry_)

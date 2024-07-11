@@ -1,6 +1,6 @@
 #ifndef VANILLA_2_H
 #define VANILLA_2_H
-#include <PayOffBridge.h>
+#include "../PayOff/PayOffBridge.h"
 class VanillaOption
 {
 public:
