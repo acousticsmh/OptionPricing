@@ -39,3 +39,11 @@ There are still some challenges.
 
 - I used a neat tool from Arbitrage theory to get the put option price from the Spot and the call option price.
 - Basically, you can replicate the portfolio of buying a call and selling a put, with the portfolio of a stock buy and a borrow from the bond market. Equating the prices, gives the price of the Put option.
+
+
+## Statistics Class with Important Functions
+
+- For important statistics like Interest Rate and Volatility, the Basic Monte Carlo Simulation assumes that these parameters are constant over the horizon.
+- In the future, there could be further developments, with complex models being developed to assess the interest rate as a function of other parameters, basically not always a constant.
+- Same for Volatility, there are complex models that can be implemented for the parameter.
+- For the purposes of the Simulation, there are two important functions, the integral and the integral of the sqaure over the horizon for the parameter. These two methods can be implemented for each statistic.
