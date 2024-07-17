@@ -65,4 +65,22 @@ private:
     double Constant;
     double ConstantSquare;
 };
+
+class ParametersPiecewiseConstant : public ParametersInner
+{
+public:
+    ParametersPiecewiseConstant(double constant1, double constant2, double time1);
+
+    virtual ParametersInner *clone() const;
+
+    virtual double Integral(double time1, double time2) const;
+
+    virtual double IntegralSquare(double time1,
+                                  double time2) const;
+
+private:
+    double constant1;
+    double constant2;
+    double changeTime;
+};
 #endif
