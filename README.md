@@ -41,9 +41,20 @@ There are still some challenges.
 - Basically, you can replicate the portfolio of buying a call and selling a put, with the portfolio of a stock buy and a borrow from the bond market. Equating the prices, gives the price of the Put option.
 
 
-## Statistics Class with Important Functions
+## Parameters Class with Important Functions
 
-- For important statistics like Interest Rate and Volatility, the Basic Monte Carlo Simulation assumes that these parameters are constant over the horizon.
+- For important parameters like Interest Rate and Volatility, the Basic Monte Carlo Simulation assumes that these parameters are constant over the horizon.
 - In the future, there could be further developments, with complex models being developed to assess the interest rate as a function of other parameters, basically not always a constant.
 - Same for Volatility, there are complex models that can be implemented for the parameter.
 - For the purposes of the Simulation, there are two important functions, the integral and the integral of the sqaure over the horizon for the parameter. These two methods can be implemented for each statistic.
+
+## Statistics Class with Strategy Design Pattern
+
+- Along with parameters, there are key statistics that are kept track of, for the purpose of calculating the option price. For something like the expected value, it's simply the calculation of a running sum and dividing it by the number of paths.
+
+- But Some complex option prices like Asian options or American Options, we may need pathwise payoffs for the option. So we need two methods for our interface:
+    - Dumping PayOff Results
+    - Returning Required Statistics
+
+- The implementation of how the statistics are stored/generated for each option/financial instrument is encapsulated within the strategy methods. To the user, only these two methods are provided.
+

@@ -2,11 +2,12 @@
 #include <cmath>
 #include <string>
 #include "Random/Random1.h"
-#include "MC/SimpleMC4.h"
+#include "MC/SimpleMC5.h"
 #include "PayOff/PayOffBridge.h"
 #include "Option/Vanilla2.h"
 #include "utils/utils.h"
 #include "Parameters/Parameters.h"
+#include "Statistics/Statistics.h"
 
 using namespace std;
 
@@ -50,17 +51,26 @@ int main()
 
     VanillaOption theOption(PayOffBridge(*thePayOff), T);
 
+    StatisticsMean gatherer;
+
     ParametersConstant VolParam(sigma);
     ParametersConstant rParam(r);
-    double option_price = SimpleMonteCarlo4(theOption,
-                                            S_0,
-                                            VolParam,
-                                            rParam,
-                                            N);
+    SimpleMonteCarlo5(theOption,
+                      S_0,
+                      VolParam,
+                      rParam,
+                      N, gatherer);
 
     double call_price = black_scholes_price(S_0, sigma, r, T, K);
     double put_price = get_put_from_call(S_0, call_price, K, r, T);
-    cout << "Monte Carlo Option Price " << option_price << endl;
+    vector<vector<double>> results = gatherer.GetResultsSoFar();
+    cout << "\nFor the Option price the results are \n";
+    for (unsigned long i = 0; i < results.size(); i++)
+    {
+        for (unsigned long j = 0; j < results[i].size(); j++)
+            cout << results[i][j] << " ";
+        cout << "\n";
+    }
     cout << "Black Scholes Call Option Price " << call_price << endl;
     cout << "Black Scholes Put Option Price " << put_price << endl;
 
