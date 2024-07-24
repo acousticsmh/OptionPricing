@@ -58,3 +58,10 @@ There are still some challenges.
 
 - The implementation of how the statistics are stored/generated for each option/financial instrument is encapsulated within the strategy methods. To the user, only these two methods are provided.
 
+
+## Wrapper Class and Template Programming in C++
+
+- In this latest update, I've added a wrapper class so that any class initialized on top of it need not handle it's own memory management.
+- This wrapper class works on top of any class, because it's written to work on a template class. It stores a inner pointer to the actual class variable, and provides pointer like access to the attributes of the class.
+- Any future class can use the constructor of the wrapper class so that it can eventually work as a pointer to that class, and the destructor of the wrapper destroys the object on going out of scope.
+

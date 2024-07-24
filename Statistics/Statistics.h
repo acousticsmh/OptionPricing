@@ -11,6 +11,8 @@ public:
 
     virtual std::vector<std::vector<double>> GetResultsSoFar() const = 0;
 
+    virtual StatisticsMC *clone() const = 0;
+
     virtual ~StatisticsMC() {}
 };
 
