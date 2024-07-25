@@ -29,4 +29,17 @@ private:
     unsigned long PathsDone;
 };
 
+class StatisticsVaR : public StatisticsMC
+{
+public:
+    StatisticsVaR(double confidenceLevel_ = 0.05);
+    virtual void DumpOneResult(double result);
+    virtual std::vector<std::vector<double>> GetResultsSoFar() const;
+    virtual StatisticsMC *clone() const;
+
+private:
+    std::vector<double> Results;
+    double confidenceLevel;
+};
+
 #endif
