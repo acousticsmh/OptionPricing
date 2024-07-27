@@ -65,3 +65,12 @@ There are still some challenges.
 - This wrapper class works on top of any class, because it's written to work on a template class. It stores a inner pointer to the actual class variable, and provides pointer like access to the attributes of the class.
 - Any future class can use the constructor of the wrapper class so that it can eventually work as a pointer to that class, and the destructor of the wrapper destroys the object on going out of scope.
 
+
+## Random Number Generation and Faster Convergence
+
+- The next part of this project is to work on making the random number generation more extendable and compiler independent.
+- The usages of rand is compiler dependant, and may not be strictly reproducible in different environments. This can cause convergence issues in options pricing, and failing of future testing.
+- So the objective is to encapsulate the Gaussian variable generation in a class, with a dimension, and a seed. The seed allows for reproduction, and the dimension is the length of the path along which the simulation is done
+- For traditional European Call and Put options, we are only interested in the price of the stock at the time of expiry, so the length of the path in the Monte Carlo Simulation is 1.
+- Along with compiler agnostic development, the object oriented approach allows us to accomodate other algorithms in random number generation for faster convergence. 
+- Mainly, using simulations for $$x$$ adn $$-x$$ (Gaussian numbers) gives us a estimate of option price with reduced variance (as covariance between consecutive samples is negative). Also, any future algorithm can use the same template class RandomBase.
