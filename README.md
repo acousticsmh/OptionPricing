@@ -74,3 +74,10 @@ There are still some challenges.
 - For traditional European Call and Put options, we are only interested in the price of the stock at the time of expiry, so the length of the path in the Monte Carlo Simulation is 1.
 - Along with compiler agnostic development, the object oriented approach allows us to accomodate other algorithms in random number generation for faster convergence. 
 - Mainly, using simulations for $$x$$ adn $$-x$$ (Gaussian numbers) gives us a estimate of option price with reduced variance (as covariance between consecutive samples is negative). Also, any future algorithm can use the same template class RandomBase.
+
+## Path Dependent Options and Exotic Pricer
+
+- Now, the framework and the available components allow us to price Complex Path Dependent Options like Asian Options.
+- The Exotic Black Scholes Engine produces spot prices of the stock (Assuming Log Normality) and Provides the interface for the Option to calculate the value of the Cash Flow based on the entire path of prices.
+- The logic in the Asian option can be modified/extended to cover other complicated options like Barrier Options or Lookback Options
+- The BlackScholes Engine acts as the main driver of the code, providing the Spot Prices, Retrieving the Value of the Options, and gathering Convergence Statistics for the Option price.
