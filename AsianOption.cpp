@@ -27,21 +27,29 @@ int main()
 
     unsigned long numDates;
 
-    T = 2.0;
+    cout << "\nEnter expiry\n";
+    cin >> T;
 
-    S_0 = 100.0;
+    cout << "\n Enter Current Stock Price\n";
+    cin >> S_0;
 
-    r = 0.03;
+    cout << "\n Enter Risk Free Interest Rate\n";
+    cin >> r;
 
-    d = 0.0;
+    cout << "\n Enter Dividend Rate \n";
+    cin >> d;
 
-    sigma = 0.15;
+    cout << "\n Enter Volatility\n";
+    cin >> sigma;
 
-    N = 1000000;
+    cout << "\n Enter Number of Simulated Paths\n";
+    cin >> N;
 
-    K = 110.0;
+    cout << "\n Enter Strike Price\n";
+    cin >> K;
 
-    numDates = 20;
+    cout << "\n Enter Number of Dates\n";
+    cin >> numDates;
 
     PayOffCall thePayOff(K);
 
@@ -74,27 +82,3 @@ int main()
     }
     return 0;
 }
-
-// cout << "\nEnter expiry\n";
-//     cin >> T;
-
-//     cout << "\n Enter Current Stock Price\n";
-//     cin >> S_0;
-
-//     cout << "\n Enter Risk Free Interest Rate\n";
-//     cin >> r;
-
-//     cout << "\n Enter Dividend Rate \n";
-//     cin >> d;
-
-//     cout << "\n Enter Volatility\n";
-//     cin >> sigma;
-
-//     cout << "\n Enter Number of Simulated Paths\n";
-//     cin >> N;
-
-//     cout << "\n Enter Strike Price\n";
-//     cin >> K;
-
-//     cout << "\n Enter Number of Dates\n";
-//     cin >> numDates;
