@@ -81,3 +81,9 @@ There are still some challenges.
 - The Exotic Black Scholes Engine produces spot prices of the stock (Assuming Log Normality) and Provides the interface for the Option to calculate the value of the Cash Flow based on the entire path of prices.
 - The logic in the Asian option can be modified/extended to cover other complicated options like Barrier Options or Lookback Options
 - The BlackScholes Engine acts as the main driver of the code, providing the Spot Prices, Retrieving the Value of the Options, and gathering Convergence Statistics for the Option price.
+
+
+## Tree Option Pricing
+- For American Options, and more complex options which have potential payoffs at intermediate times, a continuous time model might not make sense, as we need to analyze the potential payoffs at possible times (in case of American options, all the times before expiry)
+- For this, a discrete time Stochastic Model is required to approximate for the continuous case. For this, I have used a Binomial tree-based approach to model the volatility of stock at all intermediate times, and perform a backwards filtering of the payoffs (post discounting) to come up with the value of the option at present.
+- I have implemented this Tree based option for a European Option (which should have the same/similar value as the Continuous time case), an American Option (which should be valued higher), and a simple Forward Contract.

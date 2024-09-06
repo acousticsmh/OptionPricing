@@ -5,6 +5,7 @@
 #include "Random/AntiThetic.h"
 #include "Random/ParkMiller.h"
 #include "PayOff/PayOffBridge.h"
+#include "PayOff/PayOff4.h"
 #include "Wrappers/Wrapper.h"
 #include "Statistics/ConvergenceTable.h"
 #include "utils/utils.h"
@@ -18,7 +19,7 @@ using namespace std;
 int main()
 {
     double S_0;
-    double K = 110;
+    double K;
     double T;
     double r;
     double d;
